@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="RAG Chatbot — Ask questions about your documents using a local AI powered by LM Studio and LangChain.">
+  <title>RAG Chatbot — Local AI Document Assistant</title>
+  <link rel="stylesheet" href="/static/index.css?v=2">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+</head>
+<body>
+
+  <!-- Toast Notifications -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <div class="app-container">
+
+    <!-- ═══ Sidebar ═══ -->
+    <aside class="sidebar" id="sidebar">
+
+      <!-- Logo & Title -->
+      <div class="sidebar-header">
+        <div class="sidebar-logo">🧠</div>
+        <div class="sidebar-title">
+          <h1>RAG Chatbot</h1>
+          <p>Local AI · Qwen 2.5</p>
+        </div>
+      </div>
+
+      <!-- Upload Section -->
+      <div class="upload-section">
+        <span class="section-label">Upload Documents</span>
+
+        <div class="upload-zone" id="upload-zone">
+          <span class="upload-zone-icon">📄</span>
+          <div class="upload-zone-text">Drop a file here</div>
+          <div class="upload-zone-hint">supports .txt, .pdf, .docx</div>
+        </div>
+        <input type="file" id="file-input" class="upload-input" accept=".txt,.pdf,.docx">
+
+        <div class="upload-progress" id="upload-progress">
+          <div class="upload-progress-bar">
+            <div class="upload-progress-fill" id="progress-fill"></div>
+          </div>
+          <span class="upload-progress-text" id="progress-text">Processing...</span>
+        </div>
+      </div>
+
+      <!-- Documents List -->
+      <div class="documents-section">
+        <span class="section-label">Ingested Documents</span>
+        <div class="documents-list" id="documents-list">
+          <div class="empty-docs" id="empty-docs">
+            <span class="empty-docs-icon">📂</span>
+            <div>No documents uploaded yet</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LM Studio Status -->
+      <div class="status-badge" id="status-badge">
+        <span class="status-dot" id="status-dot"></span>
+        <span id="status-text">Checking LM Studio...</span>
+      </div>
+
+    </aside>
+
+    <!-- ═══ Main Chat Area ═══ -->
+    <main class="chat-area">
+
+      <!-- Chat Header -->
+      <header class="chat-header">
+        <div class="chat-header-title">
+          <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle sidebar">☰</button>
+          <div>
+            <h2>💬 Chat</h2>
+            <span class="chat-header-subtitle" id="chat-subtitle">Upload a document to start</span>
+          </div>
+        </div>
+        <button class="btn-clear" id="btn-clear-history">Clear Chat</button>
+      </header>
+
+      <!-- Messages -->
+      <div class="messages-container" id="messages-container">
+
+        <!-- Welcome Screen -->
+        <div class="welcome-screen" id="welcome-screen">
+          <span class="welcome-icon">🤖</span>
+          <h2 class="welcome-title">Welcome to RAG Chatbot</h2>
+          <p class="welcome-text">
+            Upload a document and ask questions about its content.
+            Powered by your local Qwen 2.5 model via LM Studio.
+          </p>
+          <div class="welcome-steps">
+            <div class="welcome-step">
+              <span class="step-number">1</span>
+              Upload your document
+            </div>
+            <div class="welcome-step">
+              <span class="step-number">2</span>
+              Ask questions
+            </div>
+            <div class="welcome-step">
+              <span class="step-number">3</span>
+              Get AI answers
+            </div>
+          </div>
+        </div>
+
+        <!-- Typing Indicator -->
+        <div class="typing-indicator" id="typing-indicator">
+          <div class="message-avatar">🤖</div>
+          <div class="typing-dots">
+            <span class="typing-dot"></span>
+            <span class="typing-dot"></span>
+            <span class="typing-dot"></span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Input Area -->
+      <div class="input-area">
+        <div class="input-wrapper">
+          <textarea
+            id="chat-input"
+            class="input-field"
+            placeholder="Ask a question about your documents..."
+            rows="1"
+          ></textarea>
+          <button class="btn-send" id="btn-send" aria-label="Send message">➤</button>
+        </div>
+      </div>
+
+    </main>
+
+  </div>
+
+  <script src="/static/index.js?v=2"></script>
+</body>
+</html>
