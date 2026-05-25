@@ -3,6 +3,9 @@ FastAPI application — entry point for the RAG system.
 Serves the API endpoints and the frontend chatbot UI.
 """
 
+import utils.http_session
+import utils.transport
+import utils.session
 import os
 import uuid
 
